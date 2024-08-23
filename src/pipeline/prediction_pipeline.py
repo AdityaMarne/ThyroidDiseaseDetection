@@ -41,7 +41,8 @@ class CustomData:
             
             custom_data_input_dict = {
                 "age" : [self.age],"on_thyroxine":[self.on_thyroxine],"goitre":[self.goitre],"TSH":[self.TSH],
-                "TSH_measured":[self.TSH_measured],"T3":[self.T3],"TT4_measured":[self.TT4_measured],"FTI":[self.FTI],"referral_source":[self.referral_source]
+                "TSH_measured":[self.TSH_measured],"T3":[self.T3],"TT4_measured":[self.TT4_measured],"TT4":[self.TT4],
+                "FTI":[self.FTI],"referral_source":[self.referral_source]
             }
 
             df = pd.DataFrame(custom_data_input_dict)
