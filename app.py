@@ -68,9 +68,9 @@ def predict_datapoint():
         # Removing the key `0` from the dictionary
         cleaned_data_dict = {key: value[0] for key, value in collected_data_dict.items()}
 
-        print(cleaned_data_dict)
+        #print(cleaned_data_dict)
         db = DBConn()
-        db.insert_data(collected_data_dict)
+        db.insert_data(cleaned_data_dict)
         return render_template('form.html', final_result=output)
 
 if __name__ == "__main__":
