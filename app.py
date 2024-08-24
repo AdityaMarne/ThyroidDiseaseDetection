@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 from src.pipeline.prediction_pipeline import CustomData, PredictPipeline
+from DatabaseConnection.database_conn import DBConn
 
 application = Flask(__name__)
 app = application
@@ -25,7 +26,7 @@ def predict_datapoint():
         referral_source = request.form.get('referral_source')
 
         # Debugging output
-        print(f"TT4 Value: {TT4}")  # Check if TT4 is being captured correctly
+        #print(f"TT4 Value: {TT4}")  # Check if TT4 is being captured correctly
 
         data = CustomData(
             age=age,
@@ -61,6 +62,15 @@ def predict_datapoint():
         else:
             output = "secondary hypothyroid"
         
+        final_new_data['output'] = output
+
+        collected_data_dict = final_new_data.to_dict()
+        # Removing the key `0` from the dictionary
+        cleaned_data_dict = {key: value[0] for key, value in collected_data_dict.items()}
+
+        print(cleaned_data_dict)
+        db = DBConn()
+        db.insert_data(collected_data_dict)
         return render_template('form.html', final_result=output)
 
 if __name__ == "__main__":

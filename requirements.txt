@@ -6,5 +6,7 @@ seaborn
 jupyter
 plotly
 matplotlib
+dnspython
+pymongo[srv]
 gunicorn
 -e .
